@@ -1,0 +1,256 @@
+/* first give the selector
+all values of a style sheet are a pair and a value
+*/
+/* we use color with hexadecimal values
+  we use tailwind colors to get a color palette
+  we use '** to select globally  */
+
+/* Block element - Applies to the whole block
+  Line element - Applies to only in-line element
+  we can convert inline element to block by using display: block */
+/* FLEXBOX - Property of CSS used to create simple layouts */
+
+/* CSS GRID - Set of properties to create layout
+GRID is better for bigger and 2d layouts */
+
+/* we can use media queries for responsive web design - adapting to different screens */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #9ca3af;
+  color: #f3f4f6;
+  font-family: "Sono", cursive;
+  padding: 50px 65px;
+}
+
+.header {
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.factForm {
+  background-color: #44403c;
+  margin-bottom: 50px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 20px;
+}
+
+/* using "!important" will take precidence  */
+.hidden {
+  display: none !important;
+}
+
+.factForm input,
+.factForm select {
+  width: 200px;
+  background-color: #78716c;
+  border: none;
+  border-radius: 100px;
+  padding: 20px;
+  font-size: 20px;
+  color: inherit;
+  font-family: inherit;
+}
+
+.factForm input::placeholder {
+  color: #a8a29e;
+}
+
+.factForm span {
+  font-weight: 600;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.factForm input:first-child {
+  flex-grow: 1;
+}
+
+h1 {
+  font-size: 42px;
+  text-transform: uppercase;
+  /*  we give local fonts as well as abackup if loading of fonts fail from external source*/
+  font-family: "Nova Round", sans-serif;
+}
+
+.fact {
+  font-size: 20px;
+  line-height: 1.5;
+  background-color: #44403c;
+  margin: 20px;
+  /* padding short hand
+  to give tup and bottom values with 1st value
+  left and right padding with 2nd value */
+  padding: 20px 25px;
+  letter-spacing: -1px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 20px;
+}
+
+.tags {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family: "Nova Round", Arial, Helvetica, sans-serif;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 105px 10px;
+}
+
+.vote-buttons {
+  margin-left: auto;
+
+  display: flex;
+  /* it would not allow buttons to shrink or wrap  */
+  flex-shrink: 0;
+  align-items: center;
+  gap: 5px;
+}
+
+.vote-buttons button {
+  border: none;
+  background-color: #78716c;
+  font-size: 20px;
+  padding: 6px 12px;
+  border-radius: 105px;
+  color: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: no-drop;
+  transition: 0.7s;
+}
+.vote-buttons button:hover {
+  background-color: #292524;
+}
+
+ul {
+  /* none removes any bullet pointers or any other styling */
+  list-style: none;
+}
+
+/* grid templates are used to give width and other attributes
+by using fr(A new unit in CSS) it will occupy rest of the remaining area
+It will divide the screen and place elements*/
+.main {
+  display: grid;
+  grid-template-columns: 0.7fr 3fr;
+  gap: 50px;
+}
+
+.container {
+  /*Using mac-width will auto readjust the screen layout */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 70px;
+  width: 70px;
+}
+
+/* if there is NO HREF the anchor element wouldn't get styling */
+.source:visited,
+.source:link {
+  color: #a8a29e;
+  text-decoration: none;
+  margin-left: 12px;
+
+  /* transition property - give time and animation is implemented*/
+  transition: 0.3s;
+}
+
+.source:hover,
+.source:active {
+  color: aqua;
+}
+
+.btn {
+  border: none;
+  /* inherit keyword forces to inherit from parent */
+  color: inherit;
+  font-family: "Nova Round", Arial, Helvetica, sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 20px;
+  padding: 20px 0 13px;
+  /* creating gradient color
+  mention the angle
+  followed by the colors seperated by commas */
+  background-image: linear-gradient(
+    145deg,
+    #3b82f6,
+    pink,
+    rgb(133, 187, 117),
+    #eab308
+  );
+  border-radius: 50px 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+/* hover function with transform can give animation effects to the buttons */
+.btn:hover {
+  transform: scale(110%) rotate(-5deg);
+}
+.btn-large {
+  font-size: 20px;
+  padding: 15px 30px 15px;
+  overflow: hidden;
+}
+
+.btn-all-categories {
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.btn-restof-categories {
+  width: 100%;
+  background-image: none;
+}
+
+.category {
+  margin-bottom: 10px;
+}
+
+/* Used for creating for smaller screen 
+by mentioning when this should start working through max-width to trigger
+ */
+@media (max-width: 1000px) {
+  .fact {
+    flex-direction: column;
+    align-items: end;
+    gap: 15px;
+  }
+  .factForm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .factForm input,
+  .factForm select {
+    width: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}

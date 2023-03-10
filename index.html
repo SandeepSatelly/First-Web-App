@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Today I learned</title>
+    <!-- 
+    link is used to connect other files to HTML like a 
+    CSS styling sheet; href is used to provide the path and
+    rel gives us the relationship type 
+    -->
+    <!-- We took fonts from google fonts
+    Added here in our HTML file
+  ALways place the outside link about our own css stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nova+Round&family=Sono:wght@400;600;&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styleSheet.css" rel="styleSheet" />
+  </head>
+  <div class="container">
+  <body>
+    <header class="header">
+      <div class="logo">
+        <!-- img is used for image 
+        we add src to give path to source of the image
+        img doesn't have a seperate closing tag 
+        height and width used for sizing the image
+        alt is used for screen readers-->
+        <img src="logo.png" alt="Today I leared logo" />
+        <!--We use H1 for headers  -->
+        <h1>Today I learned</h1>
+      </div>
+      <button class="btn btn-large factBtn">Share a Fact</button>
+    </header>
+    <!-- Creating a form element 
+    It is placed in between header and main
+    as the form in final webpage has to exist between them-->
+    <form class="factForm hidden">
+      <!-- input is used to denote kind of input on the page 
+          type is used to denote what kind of input we need 
+          placeholder would fill necessary pre-info 
+          which will be erased once interacted with-->
+
+      <input type="text" placeholder="Share a face with the world..." />
+      <span>200</span>
+      <input type="text" placeholder="Trust worthy source..." />
+      <!-- 
+        select is used for picking element 
+        options elemnt is used for entering options
+        option always need a value
+        we are leaving value empty for choose category 
+        as we don't want users to select that option
+        -->
+      <select>
+        <option value="">Choose category:</option>
+        <option value="technology">Technology</option>
+        <option value="science">Science</option>
+        <option value="finance">Finance</option>
+      </select>
+      <button class="btn btn-large">Post</button>
+    </form>
+    <main class="main">
+      <!-- aside is commonly used 
+        to denote sidebar of the browser window -->
+      <aside>
+        <ul class="catArray">
+          <li>
+            <!-- Button attribute is used to creaet buttons -->
+            <button class="btn btn-all-categories">All</button>
+          </li>
+          <li class="category">
+            <button class="btn btn-restof-categories" style="background-color: blue">Technology</button>
+          </li>
+          <li class="category">
+            <button class="btn btn-restof-categories" style="background-color: yellowgreen">Science</button>
+          </li>
+        </ul>
+      </aside>
+      <!-- section is used to mention main section of the page -->
+      <section>
+        <!-- ul - Unordered list -->
+        <ul class="factsList">
+          <!-- list -->
+          <li class="fact">
+            <!-- we use class to differentiate 
+            also useful in styling where we can give each class a unique style -->
+            <p>
+              React is being developed by Meta (formerly facebook)
+              <!-- a is anchor element used for hyperlinks 
+                href is used to point the URL that needs to be loaded
+                target is used to open in new TAB-->
+              <a class="source" href="https://opensource.fb.com" target="_blank"> (Source) </a>
+            </p>
+            <span class="tags" style="background-color: blue">#Tech#</span>
+            <!-- we use DIV when we need to create a kind of box
+                So that the content is different from the rest -->
+            <div class="vote-buttons">
+              <!-- strong is used to indicate an inmportant text so browser makes it BOLD
+                we can also se b tag for making something BOLD -->
+              <button>👍 24</button>
+              <button>🤯 9</button>
+              <button>⛔ 4</button>
+            </div>
+          </li>
+          <li class="fact">
+            <p>
+              Millennial dads spend 3 times as much time with their kids than
+              their fathers spent with them. In 1982, 43% of fathers had never
+              changed a diaper. Today, that number is down to 3%
+              <a class="source"
+                href="https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids"
+                target="_blank"
+              >
+                (Source)
+              </a>
+            </p>
+            <span class="tags" style="background-color: peru">#Society#</span>
+            <div class="vote-buttons">
+              <button>👍15</button>
+              <button>🤯 8</button>
+              <button>⛔<strong>20</strong></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+  <script src="reactScript.js"></script>
+  </body>
+</html>
