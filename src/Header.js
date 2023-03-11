@@ -2,13 +2,13 @@ import "./styleSheet.css";
 import React, { useState } from "react";
 import FactForm from "./FactForm";
 
-function HeaderText() {
-  const [showForm, setShowForm] = useState(false);
-
+function HeaderText({ setFacts, setShowForm, showForm }) {
   return (
     <>
       <Header setShowForm={setShowForm} showForm={showForm} />
-      {showForm ? <FactForm /> : null}
+      {showForm ? (
+        <FactForm setFacts={setFacts} setShowForm={setShowForm} />
+      ) : null}
     </>
   );
 }

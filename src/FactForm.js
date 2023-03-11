@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./styleSheet.css";
 import * as Constants from "./Constants";
-import FactList from "./FactList";
 
 function isValidHttpUrl(string) {
   let url;
@@ -13,21 +12,19 @@ function isValidHttpUrl(string) {
   return url.protocol === "http:" || url.protocol === "https:";
 }
 
-function FactForm() {
+function FactForm({ facts, setFacts, setShowForm }) {
   const count = 200;
   const [text, setText] = useState("");
   const [source, setSource] = useState("");
   const [category, setCategory] = useState("");
   const textLength = text.length;
-  const [facts, setFacts] = useState(Constants.initialFacts);
+
   function handleSubmit(e) {
     //Prevent page loading on clicking a button
     e.preventDefault();
-
-    //If the data is valid
     if (text && isValidHttpUrl(source) && category) {
       const newFact = {
-        id: 4,
+        id: (Math.random() * 100) / 100,
         text,
         source,
         category,
@@ -36,12 +33,13 @@ function FactForm() {
         votesFalse: 0,
         createdIn: 2023,
       };
+      setFacts((facts) => [newFact, ...facts]);
+
+      setText("");
+      setCategory("");
+      setSource("");
+      setShowForm(false);
     }
-    //Create a new fact
-
-    //reset input fields
-
-    //Close the form
   }
 
   return (

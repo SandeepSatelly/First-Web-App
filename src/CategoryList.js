@@ -1,11 +1,16 @@
 import { CATEGORIES as Constants } from "./Constants";
 
-function CategoryList() {
+function CategoryList({ setCurrentCategory }) {
   return (
     <aside>
       <ul>
         <li>
-          <button className="btn btn-all-categories">All</button>
+          <button
+            className="btn btn-all-categories"
+            onClick={() => setCurrentCategory("all")}
+          >
+            All
+          </button>
         </li>
         {Constants.map((catName) => (
           <li key={catName.name}>
@@ -14,6 +19,7 @@ function CategoryList() {
               style={{
                 backgroundColor: catName.color,
               }}
+              onClick={() => setCurrentCategory(catName.name)}
             >
               {catName.name}
             </button>

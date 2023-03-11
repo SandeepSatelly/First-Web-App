@@ -1,8 +1,14 @@
 import { useState } from "react";
 import * as Constants from "./Constants";
 
-function FactList() {
-  const facts = Constants.initialFacts;
+function FactList({ facts }) {
+  if (facts.length === 0) {
+    return (
+      <p className="message">
+        No facts for this category yet! Create first one 😎
+      </p>
+    );
+  }
   return (
     <section>
       <ul className="factsList">
@@ -61,10 +67,10 @@ function VoteCount({ prop }) {
   return (
     <div className="vote-buttons">
       <button onClick={() => setVote((count) => count + 1)}>
-        👍 {prop.votesFalse}
+        👍 {prop.votes_for_interesting}
       </button>
-      <button>🤯 {prop.votesMindblowing}</button>
-      <button>⛔ {prop.votesFalse}</button>
+      <button>🤯 {prop.vote_for_mindblowing}</button>
+      <button>⛔ {prop.vote_for_false}</button>
     </div>
   );
 }
