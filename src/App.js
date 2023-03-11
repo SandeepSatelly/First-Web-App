@@ -1,14 +1,18 @@
 import "./styleSheet.css";
+import HeaderText from "./Header.js";
+import FactForm from "./FactForm.js";
+import FactList from "./FactList";
+import CategoryList from "./CategoryList";
 
 function App() {
   return (
-    <header className="header">
-      <div className="logo">
-        <img src="logo.png" height="68" width="68" alt="Today I learned logo" />
-        <h1>Today I Learned</h1>
-      </div>
-      <button className="btn btn-lrg btn-open">Share a fact</button>
-    </header>
+    <>
+      <HeaderText />
+      <main className="main">
+        <CategoryList />
+        <FactList />
+      </main>
+    </>
   );
 }
 

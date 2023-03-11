@@ -135,7 +135,7 @@ h1 {
   color: inherit;
   font-family: inherit;
   font-weight: 600;
-  cursor: no-drop;
+  cursor: crosshair;
   transition: 0.7s;
 }
 .vote-buttons button:hover {
@@ -156,7 +156,7 @@ It will divide the screen and place elements*/
   gap: 50px;
 }
 
-.container {
+#root {
   /*Using mac-width will auto readjust the screen layout */
   max-width: 1000px;
   margin: 0 auto;
@@ -203,12 +203,12 @@ It will divide the screen and place elements*/
     #eab308
   );
   border-radius: 50px 10px;
-  cursor: pointer;
+  cursor: progress;
   transition: 0.5s;
 }
 /* hover function with transform can give animation effects to the buttons */
 .btn:hover {
-  transform: scale(110%) rotate(-5deg);
+  transform: scale(110%) rotate(-3deg);
 }
 .btn-large {
   font-size: 20px;
