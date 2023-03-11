@@ -1,5 +1,5 @@
 import "./styleSheet.css";
-import React, { useState } from "react";
+import React from "react";
 import FactForm from "./FactForm";
 
 function HeaderText({ setFacts, setShowForm, showForm }) {

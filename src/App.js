@@ -3,7 +3,6 @@ import HeaderText from "./Header.js";
 import FactList from "./FactList";
 import CategoryList from "./CategoryList";
 import { useEffect, useState } from "react";
-import * as Constants from "./Constants";
 import supabase from "./supabase";
 
 function App() {
