@@ -1,7 +1,8 @@
 import { useState } from "react";
 import * as Constants from "./Constants";
+import supabase from "./supabase";
 
-function FactList({ facts }) {
+function FactList({ facts, setFacts }) {
   if (facts.length === 0) {
     return (
       <p className="message">
@@ -13,7 +14,7 @@ function FactList({ facts }) {
     <section>
       <ul className="factsList">
         {facts.map((fact) => (
-          <Fact key={fact.id} props={fact} />
+          <Fact key={fact.id} props={fact} setFacts={setFacts} />
         ))}
       </ul>
       <p>There are {facts.length} in the Db</p>
@@ -21,15 +22,19 @@ function FactList({ facts }) {
   );
 }
 
-function Fact({ props }) {
+function Fact({ props, setFacts }) {
+  const isDisputed =
+    props.votes_for_interesting + props.vote_for_mindblowing <
+    props.vote_for_false;
   return (
     <li className="fact">
       <p>
+        {isDisputed ? <span className="disputed">👎 🤬 [DISPUTED]</span> : null}
         {props.text}
         <Source prop={props} />
       </p>
       <Category prop={props} />
-      <VoteCount prop={props} />
+      <VoteCount prop={props} setFacts={setFacts} />
     </li>
   );
 }
@@ -62,15 +67,38 @@ function Category({ prop }) {
   );
 }
 
-function VoteCount({ prop }) {
-  const [voted, setVote] = useState(0);
+function VoteCount({ prop, setFacts }) {
+  const [isUpdating, setIsUpdating] = useState(false);
+  async function handleVote(columnName) {
+    setIsUpdating(true);
+    const { data: updatedFact, error } = await supabase
+      .from("facts")
+      .update({ [columnName]: prop[columnName] + 1 })
+      .eq("id", prop.id)
+      .select();
+
+    setIsUpdating(false);
+
+    if (!error) {
+      setFacts((facts) =>
+        facts.map((f) => (f.id === prop.id ? updatedFact[0] : f))
+      );
+    }
+  }
   return (
     <div className="vote-buttons">
-      <button onClick={() => setVote((count) => count + 1)}>
+      <button
+        onClick={() => handleVote("votes_for_interesting")}
+        disabled={isUpdating}
+      >
         👍 {prop.votes_for_interesting}
       </button>
-      <button>🤯 {prop.vote_for_mindblowing}</button>
-      <button>⛔ {prop.vote_for_false}</button>
+      <button onClick={() => handleVote("vote_for_mindblowing")}>
+        🤯 {prop.vote_for_mindblowing}
+      </button>
+      <button onClick={() => handleVote("vote_for_false")}>
+        ⛔ {prop.vote_for_false}
+      </button>
     </div>
   );
 }
